@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Interview Simulator | AI-Powered Practice",
+  title: "InterviewSim | Predict the Unpredictable Interview",
   description:
-    "Practice behavioral, case, and situational interview questions with AI-powered feedback.",
+    "AI-powered mock interview practice. Behavioral, case, and situational questions with detailed feedback.",
 };
 
 export default function RootLayout({
@@ -28,7 +28,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        {children}
+      </body>
     </html>
   );
 }

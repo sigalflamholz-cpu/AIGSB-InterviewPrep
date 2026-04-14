@@ -21,19 +21,19 @@ export default function QuestionDisplay({ question }: QuestionDisplayProps) {
   };
 
   return (
-    <div className="animate-fade-in rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 shadow-sm">
-      <div className="mb-4 flex items-center gap-2">
+    <div className="animate-fade-in rounded-3xl bg-card-light p-8">
+      <div className="mb-5 flex items-center gap-2">
         <Badge variant="info">{categoryLabels[question.category]}</Badge>
         <Badge variant={difficultyVariant[question.difficulty]}>
           {question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}
         </Badge>
       </div>
-      <p className="text-lg font-medium leading-7 text-slate-800">
+      <p className="text-lg font-bold leading-7 text-text-dark">
         {question.question}
       </p>
       {question.context && (
-        <div className="mt-4 rounded-lg bg-white/70 p-4 text-sm text-slate-600">
-          <span className="font-semibold text-slate-700">Context: </span>
+        <div className="mt-5 rounded-xl bg-white/50 p-4 text-sm leading-relaxed text-text-dark/70">
+          <span className="font-bold text-text-dark">Context: </span>
           {question.context}
         </div>
       )}

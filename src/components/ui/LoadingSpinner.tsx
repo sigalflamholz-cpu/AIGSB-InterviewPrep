@@ -7,7 +7,7 @@ export default function LoadingSpinner({ size = "md" }: { size?: "sm" | "md" | "
 
   return (
     <div
-      className={`${sizeClasses[size]} animate-spin-slow rounded-full border-slate-300 border-t-primary`}
+      className={`${sizeClasses[size]} animate-spin-slow rounded-full border-white/20 border-t-white`}
     />
   );
 }

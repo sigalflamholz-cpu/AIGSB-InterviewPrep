@@ -32,8 +32,8 @@ function ScoreRing({ score }: { score: number }) {
           cy="50"
           r="40"
           fill="none"
-          stroke="#e2e8f0"
-          strokeWidth="8"
+          stroke="rgba(255,255,255,0.1)"
+          strokeWidth="6"
         />
         <circle
           cx="50"
@@ -41,7 +41,7 @@ function ScoreRing({ score }: { score: number }) {
           r="40"
           fill="none"
           stroke="currentColor"
-          strokeWidth="8"
+          strokeWidth="6"
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
@@ -49,8 +49,8 @@ function ScoreRing({ score }: { score: number }) {
         />
       </svg>
       <div className="absolute text-center">
-        <span className="text-2xl font-bold text-slate-800">{score}</span>
-        <span className="text-xs text-slate-400">/10</span>
+        <span className="text-2xl font-black text-foreground">{score}</span>
+        <span className="text-[10px] text-text-muted">/10</span>
       </div>
     </div>
   );
@@ -72,8 +72,8 @@ export default function ResultsPage() {
 
   if (!data) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-blue-600" />
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-white" />
       </div>
     );
   }
@@ -81,36 +81,37 @@ export default function ResultsPage() {
   const { feedback, question } = data;
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="border-b border-slate-200 bg-white/80 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-xl font-bold text-slate-900">
-            Interview<span className="text-blue-600">Sim</span>
-          </Link>
-        </div>
+    <div className="flex min-h-screen flex-col bg-background">
+      {/* Header */}
+      <header className="flex items-center justify-between px-6 py-5 md:px-8">
+        <Link href="/" className="text-sm font-black uppercase tracking-wider text-foreground">
+          Interview
+          <br />
+          <span className="text-text-muted">Simulator</span>
+        </Link>
       </header>
 
-      <main className="flex-1 px-6 py-10">
-        <div className="mx-auto max-w-3xl space-y-8">
+      <main className="flex-1 px-6 pb-12 md:px-8">
+        <div className="mx-auto max-w-3xl space-y-6">
           {/* Score Header */}
-          <div className="animate-fade-in flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+          <div className="animate-fade-in flex flex-col items-center rounded-3xl bg-card-light p-10 text-center">
             <ScoreRing score={feedback.overallScore} />
-            <h1 className="mt-4 text-2xl font-bold text-slate-900">
-              Your Interview Score
+            <h1 className="mt-5 text-2xl font-black uppercase tracking-tight text-text-dark">
+              Your Score
             </h1>
-            <p className="mt-1 text-slate-500">
+            <p className="mt-2 max-w-md text-sm text-text-dark/60">
               {feedback.overallScore >= 8
-                ? "Excellent response! You demonstrated strong interview skills."
+                ? "Excellent response. You demonstrated strong interview skills."
                 : feedback.overallScore >= 6
-                  ? "Good effort! With some refinement, your answer will be even stronger."
+                  ? "Good effort. With some refinement, your answer will be even stronger."
                   : feedback.overallScore >= 4
-                    ? "A solid start. Focus on the improvement areas below to level up."
-                    : "Keep practicing! Review the feedback below to strengthen your approach."}
+                    ? "A solid start. Focus on the improvement areas below."
+                    : "Keep practicing. Review the feedback below to strengthen your approach."}
             </p>
           </div>
 
           {/* Strengths & Improvements */}
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
             <FeedbackCard
               title="Strengths"
               items={feedback.strengths}
@@ -129,16 +130,16 @@ export default function ResultsPage() {
           )}
 
           {/* Model Answer */}
-          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="rounded-3xl border border-border bg-card-darker">
             <button
               onClick={() => setShowModel(!showModel)}
               className="flex w-full items-center justify-between px-6 py-5 text-left"
             >
-              <span className="text-base font-semibold text-slate-800">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">
                 Model Answer
               </span>
               <svg
-                className={`h-5 w-5 text-slate-400 transition-transform ${showModel ? "rotate-180" : ""}`}
+                className={`h-4 w-4 text-text-muted transition-transform ${showModel ? "rotate-180" : ""}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -152,8 +153,8 @@ export default function ResultsPage() {
               </svg>
             </button>
             {showModel && (
-              <div className="border-t border-slate-100 px-6 pb-6 pt-4">
-                <p className="whitespace-pre-wrap text-sm leading-7 text-slate-600">
+              <div className="border-t border-border px-6 pb-6 pt-4">
+                <p className="whitespace-pre-wrap text-sm leading-7 text-foreground/70">
                   {feedback.improvedAnswer}
                 </p>
               </div>
@@ -164,13 +165,16 @@ export default function ResultsPage() {
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link
               href="/interview"
-              className="flex flex-1 items-center justify-center rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow-md"
+              className="flex flex-1 items-center justify-center gap-2 rounded-full border border-foreground/20 bg-card-dark px-6 py-4 text-xs font-bold uppercase tracking-widest text-foreground transition-all hover:border-foreground/40"
             >
-              Practice Another Question
+              Practice Again
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
             <Link
               href="/"
-              className="flex flex-1 items-center justify-center rounded-xl border border-slate-300 px-6 py-3.5 font-semibold text-slate-700 transition-all hover:bg-slate-50"
+              className="flex flex-1 items-center justify-center rounded-full border border-border px-6 py-4 text-xs font-bold uppercase tracking-widest text-text-muted transition-all hover:border-foreground/20 hover:text-foreground"
             >
               Back to Home
             </Link>

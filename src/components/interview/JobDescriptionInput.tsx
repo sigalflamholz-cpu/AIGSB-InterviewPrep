@@ -15,20 +15,22 @@ export default function JobDescriptionInput({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white">
+    <div className="rounded-2xl border border-border bg-card-darker">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex w-full items-center justify-between px-5 py-4 text-left"
+        className="flex w-full items-center justify-between px-6 py-4 text-left"
       >
         <div className="flex items-center gap-3">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">
             Job Description
           </span>
-          <span className="text-xs text-slate-400">(optional)</span>
+          <span className="text-[10px] uppercase tracking-widest text-text-muted/50">
+            (optional)
+          </span>
           {value.trim() && <Badge variant="info">JD Active</Badge>}
         </div>
         <svg
-          className={`h-5 w-5 text-slate-400 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+          className={`h-4 w-4 text-text-muted transition-transform ${isExpanded ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -38,20 +40,20 @@ export default function JobDescriptionInput({
         </svg>
       </button>
       {isExpanded && (
-        <div className="border-t border-slate-100 px-5 pb-5 pt-3">
+        <div className="border-t border-border px-6 pb-6 pt-4">
           <textarea
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Paste a job description here to get tailored interview questions..."
-            className="w-full resize-none rounded-lg border border-slate-200 p-3 text-sm text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full resize-none rounded-xl border border-border bg-background p-4 text-sm text-foreground placeholder-text-muted/50 focus:border-foreground/30 focus:outline-none"
             rows={6}
           />
           {value.trim() && (
             <button
               onClick={() => onChange("")}
-              className="mt-2 text-xs text-slate-400 hover:text-slate-600"
+              className="mt-2 text-[10px] uppercase tracking-widest text-text-muted hover:text-foreground"
             >
-              Clear job description
+              Clear
             </button>
           )}
         </div>

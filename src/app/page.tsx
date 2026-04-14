@@ -1,80 +1,69 @@
 import Hero from "@/components/landing/Hero";
 import FeatureCard from "@/components/landing/FeatureCard";
-
-function BrainIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2a4 4 0 0 1 4 4 4 4 0 0 1-1.5 3.1A5 5 0 0 1 17 14a5 5 0 0 1-3 4.6V22h-4v-3.4A5 5 0 0 1 7 14a5 5 0 0 1 2.5-4.9A4 4 0 0 1 8 6a4 4 0 0 1 4-4z" />
-    </svg>
-  );
-}
-
-function TargetIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="6" />
-      <circle cx="12" cy="12" r="2" />
-    </svg>
-  );
-}
-
-function ChartIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 3v18h18" />
-      <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
-    </svg>
-  );
-}
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="border-b border-slate-200 bg-white/80 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-xl font-bold text-slate-900">
-            Interview<span className="text-blue-600">Sim</span>
+    <div className="flex min-h-screen flex-col bg-background">
+      {/* Nav */}
+      <header className="flex items-center justify-between px-6 py-5 md:px-8">
+        <Link href="/" className="text-sm font-black uppercase tracking-wider text-foreground">
+          Interview
+          <br />
+          <span className="text-text-muted">Simulator</span>
+        </Link>
+        <nav className="hidden items-center gap-8 md:flex">
+          <Link
+            href="/interview"
+            className="text-xs font-medium uppercase tracking-widest text-text-muted transition-colors hover:text-foreground"
+          >
+            Practice
+          </Link>
+          <span className="text-xs font-medium uppercase tracking-widest text-text-muted">
+            Behavioral
           </span>
+          <span className="text-xs font-medium uppercase tracking-widest text-text-muted">
+            Case Study
+          </span>
+          <span className="text-xs font-medium uppercase tracking-widest text-text-muted">
+            Method
+          </span>
+        </nav>
+        <div className="flex items-center gap-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-text-muted">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
         </div>
       </header>
 
-      <main className="flex-1">
-        <Hero />
+      {/* Hero */}
+      <Hero />
 
-        <section id="features" className="bg-white px-6 py-20">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="mb-4 text-center text-3xl font-bold text-slate-900">
-              Everything You Need to Prepare
-            </h2>
-            <p className="mx-auto mb-12 max-w-2xl text-center text-slate-600">
-              Our AI-powered platform helps you practice and improve with
-              targeted feedback on every answer.
-            </p>
-            <div className="grid gap-8 md:grid-cols-3">
-              <FeatureCard
-                icon={<BrainIcon />}
-                title="AI-Generated Questions"
-                description="Practice with behavioral, case, and situational questions across three difficulty levels. Each question is uniquely generated to keep your practice fresh."
-              />
-              <FeatureCard
-                icon={<TargetIcon />}
-                title="Job Description Tailoring"
-                description="Paste any job description and get interview questions specifically tailored to that role's requirements, skills, and competencies."
-              />
-              <FeatureCard
-                icon={<ChartIcon />}
-                title="STAR Framework Feedback"
-                description="Receive detailed analysis of your answers with scoring against the STAR method. See exactly where you excel and where to improve."
-              />
-            </div>
-          </div>
-        </section>
-      </main>
+      {/* Feature Tags Grid */}
+      <section className="grid grid-cols-2 gap-4 px-6 py-4 md:grid-cols-3 md:px-8">
+        <FeatureCard tag="Systems" bgClass="bg-gradient-to-br from-emerald-950 to-card-darker" />
+        <FeatureCard tag="Behavioral" bgClass="bg-card-darker" />
+        <FeatureCard tag="Situational" bgClass="bg-gradient-to-br from-neutral-800 to-card-darker" />
+      </section>
 
-      <footer className="border-t border-slate-200 bg-white px-6 py-8">
-        <div className="mx-auto max-w-6xl text-center text-sm text-slate-500">
-          Powered by Claude AI. Built for interview excellence.
+      {/* Footer */}
+      <footer className="mt-auto px-6 py-8 md:px-8">
+        <div className="flex items-center justify-between border-t border-border pt-6">
+          <span className="text-xs text-text-muted">
+            Powered by Claude AI
+          </span>
+          <Link
+            href="/interview"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card-dark px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-foreground transition-all hover:bg-card-darker hover:border-foreground/20"
+          >
+            Start Practicing
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </footer>
     </div>

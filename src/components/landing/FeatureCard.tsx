@@ -1,17 +1,18 @@
 interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+  tag: string;
+  bgClass?: string;
 }
 
-export default function FeatureCard({ icon, title, description }: FeatureCardProps) {
+export default function FeatureCard({ tag, bgClass = "bg-card-darker" }: FeatureCardProps) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-md">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-        {icon}
-      </div>
-      <h3 className="mb-2 text-lg font-semibold text-slate-900">{title}</h3>
-      <p className="text-sm leading-6 text-slate-600">{description}</p>
+    <div
+      className={`relative flex min-h-[200px] items-end overflow-hidden rounded-3xl ${bgClass} p-6`}
+    >
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      <span className="relative z-10 text-sm font-bold uppercase tracking-wider text-white">
+        #{tag}
+      </span>
     </div>
   );
 }

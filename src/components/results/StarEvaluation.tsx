@@ -18,13 +18,13 @@ function ScoreBar({ score }: { score: number }) {
 
   return (
     <div className="flex items-center gap-3">
-      <div className="h-2 flex-1 rounded-full bg-slate-200">
+      <div className="h-1.5 flex-1 rounded-full bg-white/10">
         <div
-          className={`h-2 rounded-full ${color} transition-all duration-500`}
+          className={`h-1.5 rounded-full ${color} transition-all duration-500`}
           style={{ width: `${percentage}%` }}
         />
       </div>
-      <span className="w-8 text-right text-sm font-semibold text-slate-700">
+      <span className="w-8 text-right text-xs font-bold text-foreground/70">
         {score}/10
       </span>
     </div>
@@ -33,8 +33,8 @@ function ScoreBar({ score }: { score: number }) {
 
 export default function StarEvaluation({ evaluation }: StarEvaluationProps) {
   return (
-    <div className="rounded-2xl border border-violet-200 bg-violet-50 p-6">
-      <h3 className="mb-6 text-lg font-semibold text-violet-800">
+    <div className="rounded-3xl border border-border bg-card-darker p-6">
+      <h3 className="mb-6 text-[10px] font-bold uppercase tracking-widest text-text-muted">
         STAR Framework Evaluation
       </h3>
       <div className="space-y-5">
@@ -44,16 +44,16 @@ export default function StarEvaluation({ evaluation }: StarEvaluationProps) {
             <div key={comp.key}>
               <div className="mb-1.5 flex items-baseline justify-between">
                 <div>
-                  <span className="text-sm font-semibold text-slate-800">
+                  <span className="text-sm font-bold text-foreground">
                     {comp.label}
                   </span>
-                  <span className="ml-2 text-xs text-slate-400">
+                  <span className="ml-2 text-[10px] uppercase tracking-widest text-text-muted">
                     {comp.description}
                   </span>
                 </div>
               </div>
               <ScoreBar score={data.score} />
-              <p className="mt-1.5 text-sm text-slate-600">{data.feedback}</p>
+              <p className="mt-1.5 text-sm text-foreground/60">{data.feedback}</p>
             </div>
           );
         })}

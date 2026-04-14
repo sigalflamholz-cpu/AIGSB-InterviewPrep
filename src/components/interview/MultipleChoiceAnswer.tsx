@@ -15,7 +15,7 @@ export default function MultipleChoiceAnswer({
 }: MultipleChoiceAnswerProps) {
   return (
     <div>
-      <label className="mb-3 block text-sm font-semibold text-slate-700">
+      <label className="mb-3 block text-[10px] font-bold uppercase tracking-widest text-text-muted">
         Select Your Answer
       </label>
       <div className="space-y-3">
@@ -24,25 +24,25 @@ export default function MultipleChoiceAnswer({
             key={index}
             onClick={() => onSelect(choice)}
             disabled={disabled}
-            className={`w-full rounded-xl border-2 p-4 text-left text-sm transition-all ${
+            className={`w-full rounded-2xl border p-5 text-left text-sm transition-all ${
               selected === choice
-                ? "border-blue-500 bg-blue-50 shadow-sm"
-                : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
-            } disabled:cursor-not-allowed disabled:opacity-60`}
+                ? "border-foreground/30 bg-card-dark"
+                : "border-border bg-card-darker hover:border-border hover:bg-card-dark"
+            } disabled:cursor-not-allowed disabled:opacity-50`}
           >
             <div className="flex items-start gap-3">
               <div
                 className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 ${
                   selected === choice
-                    ? "border-blue-500 bg-blue-500"
-                    : "border-slate-300"
+                    ? "border-foreground bg-foreground"
+                    : "border-text-muted/30"
                 }`}
               >
                 {selected === choice && (
-                  <div className="h-2 w-2 rounded-full bg-white" />
+                  <div className="h-2 w-2 rounded-full bg-background" />
                 )}
               </div>
-              <span className="text-slate-700">{choice}</span>
+              <span className="text-foreground">{choice}</span>
             </div>
           </button>
         ))}
